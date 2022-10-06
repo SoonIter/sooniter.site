@@ -125,7 +125,7 @@ Vite-ssg生成静态站点
 
 ## 渐进web应用 PWA
 由于PWA必须使用https，使用 https-localhost 的 `serve ./dist`，可在本地调试。
-![pwa](/imgs/pwa.png)
+![pwa](/imgs/myNewWebsite/pwa.png)
 
 ## 后续优化 Optimization
 首先使用lighthouse和web-vital进行评分测算
