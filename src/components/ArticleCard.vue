@@ -40,7 +40,7 @@ const image = computed(() => {
 <template>
   <RouterLink :to="link">
     <div card w-full flex flex-col p-0>
-      <img v-if="true" h-30 object-cover border-box class="image" dark:opacity-60 :src="image">
+      <img v-if="true" h-30 object-cover border-box class="image" dark:opacity-60 :alt="title" :src="image">
       <div flex-1 p-4 md:p-6>
         <h2 text-xl md:text-2xl font-bold flex items-center gap-1>
           <English v-if="lang === 'en'" />

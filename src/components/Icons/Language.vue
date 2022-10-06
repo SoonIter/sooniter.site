@@ -12,7 +12,7 @@ const toggleLocales = () => {
 </script>
 
 <template>
-  <a class="icon-btn" :title="t('button.toggle_langs')" @click="toggleLocales()">
+  <div class="icon-btn" :title="t('button.toggle_langs')" @click="toggleLocales()">
     <div i-carbon-language />
-  </a>
+  </div>
 </template>

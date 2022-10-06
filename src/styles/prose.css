@@ -347,6 +347,7 @@ code::before::after {
   font-size: inherit;
   font-family: inherit;
   line-height: inherit;
+  white-space: pre;
 }
 
 .prose pre code::before {

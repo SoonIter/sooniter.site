@@ -4,6 +4,6 @@
 
 <template>
   <Starport port="Avatar">
-    <img src="https://q1.qlogo.cn/g?b=qq&nk=1730214056&s=640" rounded-full>
+    <img src="https://q1.qlogo.cn/g?b=qq&nk=1730214056&s=640" alt="avatar" rounded-full>
   </Starport>
 </template>

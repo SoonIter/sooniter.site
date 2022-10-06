@@ -1,11 +1,5 @@
 <script setup lang="ts">
 const { y } = useWindowScroll()
-const { t } = useI18n()
-watchEffect(() => {
-  useTitle(t(
-    'button.home',
-  ))
-})
 </script>
 
 <template>

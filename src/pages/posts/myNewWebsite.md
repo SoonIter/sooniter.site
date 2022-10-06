@@ -113,6 +113,25 @@ a标签里加了 norefer noopener nofollow target="_blank"，属于a标签的冷
 ## 搜索引擎优化 SEO
 Vite-ssg生成静态站点
 
-meta标签加入作者、描述等等
+元数据：meta标签加入作者author、描述description等等，便于分享、抓取
+![meta-label-in-lark](/imgs/myNewWebSite/meta-label.png)
 
-顺便meta标签还可以和twitter联动
+顺便meta标签还可以和twitter、facebook联动
+
+语义化：
+1. a标签应该有href，语言切换按钮随手用的a标签，我理应用button
+2. img带alt，利于爬虫抓取
+
+
+## 后续优化 Optimization
+
+首先使用lighthouse和web-vital进行评分测算
+![lighthouse](/imgs/myNewWebSite/lighthouse/lighthouse.jpg)
+
+![treemap](/imgs/myNewWebsite/lighthouse/treemap.png)
+
+DA证书，升级https
+
+给img加alt标签
+
+

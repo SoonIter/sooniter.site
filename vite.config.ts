@@ -135,8 +135,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon-dark.svg', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
+        name: 'SoonIter\`s site',
+        short_name: 'SoonBlog',
         theme_color: '#ffffff',
         icons: [
           {

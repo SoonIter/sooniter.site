@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import { StarportCarrier } from 'vue-starport'
-
+// document.body.addEventListener('touchmove', (e) => {
+//   e.preventDefault() // 阻止默认的处理方式(阻止下拉滑动的效果)
+// }, { passive: false })
 useHead({
-  title: 'SoonIter',
+  title: 'SoonIter的小站',
   meta: [
+    { name: 'author', content: 'SoonIter' },
     { name: 'description', content: 'SoonIter\`s personal site. Share some frontend study information and opinions.' },
     {
       name: 'theme-color',
       content: computed(() => isDark.value ? '#000' : '#ffffff'),
     },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:creator', content: '@Soon_Iter' },
+    { property: 'og:title', content: 'SoonIter' },
+    { property: 'og:image', content: 'https://avatars.githubusercontent.com/u/79413249?v=4' },
   ],
   link: [
     {

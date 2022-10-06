@@ -12,7 +12,7 @@ const isCenter = props.center ?? false
         underline
       >CC BY-NC-SA 4.0</a>
     </p>
-    <p text-2 text-gray>
+    <p text-sm text-gray-500>
       Built with <a href="https://github.com/antfu/vitesse">Vitesse</a>
     </p>
   </footer>
