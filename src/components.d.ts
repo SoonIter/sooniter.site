@@ -8,7 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     About: typeof import('./components/Icons/About.vue')['default']
-    AboutMe: typeof import('./components/AboutMe.vue')['default']
+    AboutMe: typeof import('./components/AboutMe.md')['default']
     AriticleList: typeof import('./components/AriticleList.vue')['default']
     ArticleCard: typeof import('./components/ArticleCard.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
@@ -23,9 +23,12 @@ declare module '@vue/runtime-core' {
     IconButtons: typeof import('./components/IconButtons.vue')['default']
     Juejin: typeof import('./components/Icons/Juejin.vue')['default']
     Language: typeof import('./components/Icons/Language.vue')['default']
+    Leetcode: typeof import('./components/Icons/Leetcode.vue')['default']
     Post: typeof import('./components/Post.vue')['default']
     ProfileCard: typeof import('./components/ProfileCard.vue')['default']
+    Project: typeof import('./components/Project.vue')['default']
     README: typeof import('./components/README.md')['default']
+    'README.zh_CN': typeof import('./components/README.zh_CN.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScrollToTop: typeof import('./components/ScrollToTop.vue')['default']

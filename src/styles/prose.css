@@ -2,16 +2,18 @@
   --fg: #555;
   --fg-deep: #222;
   --fg-deeper: #000;
-
   color: var(--fg);
 }
 
 .prose a {
+  color: var(--fg-deep);
   font-weight: inherit;
   text-decoration: none;
   border-bottom: 1px solid rgba(125, 125, 125, 0.3);
   transition: border 0.3s ease-in-out;
+  font-weight: 500;
 }
+
 
 .prose a:hover {
   border-bottom: 1px solid var(--fg);
@@ -117,13 +119,14 @@ h6:focus .header-anchor {
   text-overflow: ellipsis;
   opacity: 0.5;
 }
-.table-of-contents li{
+
+.table-of-contents li {
   opacity: 1;
   transition: all .2s ease-out;
 }
 
 /* .table-of-contents:hover { */
-  /* opacity: 0.7; */
+/* opacity: 0.7; */
 /* } */
 
 .table-of-contents ul>li::before {
@@ -154,11 +157,8 @@ code::before::after {
   margin-bottom: 1.2em;
 }
 
-.prose a {
-  color: var(--fg-deeper);
-  text-decoration: none;
-  font-weight: 500;
-}
+
+
 .prose strong {
   color: var(--fg-deep);
   font-weight: 600;
@@ -310,17 +310,10 @@ code::before::after {
   border-radius: 6px;
 }
 
-
-.prose a code {
-  color: #111827;
-}
-
 .prose code::before,
 .prose code::after {
   content: "" !important;
 }
-
-
 
 
 .prose pre {

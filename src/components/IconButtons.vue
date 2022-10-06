@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const props = defineProps<{ onlyShowLink?: boolean }>()
 </script>
 
 <template>
@@ -9,8 +10,12 @@
       <Bilibili />
       <Juejin />
       <Zhihu />
+      <Leetcode />
     </section>
-    <section flex gap-4 justify-center md:justify-start>
+    <section
+      v-if="props.onlyShowLink !== undefined && props.onlyShowLink === false" flex gap-4 justify-center
+      md:justify-start
+    >
       <Home />
       <About />
       <Dark />
