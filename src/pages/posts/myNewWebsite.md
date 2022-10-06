@@ -114,7 +114,7 @@ a标签里加了 norefer noopener nofollow target="_blank"，属于a标签的冷
 Vite-ssg生成静态站点
 
 元数据：meta标签加入作者author、描述description等等，便于分享、抓取
-![meta-label-in-lark](/imgs/myNewWebSite/meta-label.png)
+![meta-label-in-lark](/imgs/myNewWebsite/meta-label.png)
 
 顺便meta标签还可以和twitter、facebook联动
 
@@ -135,3 +135,13 @@ DA证书，升级https
 给img加alt标签
 
 
+
+## 局域网调试
+```typescript
+//vite.config.ts
+defineConfig({
+  server: {
+    host: '0.0.0.0',
+  },
+})
+```
