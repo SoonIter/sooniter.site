@@ -34,7 +34,7 @@
   "node_modules/.pnpm/@vueuse+core@9.2.0_vue@3.2.39/node_modules/@vueuse/core/index.mjs": [],
   "src/composables/dark.ts": [],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
-  "src/App.vue?vue&type=style&index=0&scoped=a5234643&lang.css": [],
+  "src/App.vue?vue&type=style&index=0&scoped=2e179a8a&lang.css": [],
   "\u0000plugin-vue:export-helper": [],
   "src/App.vue": [],
   "src/components/ScrollToTop.vue?vue&type=script&setup=true&lang.ts": [],
@@ -59,12 +59,14 @@
   "src/components/AriticleList.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Tabs.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Tabs.vue?vue&type=style&index=0&lang.css": [],
+  "src/components/Icons/Leetcode.vue?vue&type=script&setup=true&lang.ts": [],
+  "src/components/Icons/Leetcode.vue?vue&type=style&index=0&lang.css": [],
   "src/components/Icons/Zhihu.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Icons/Juejin.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Icons/Bilibili.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Icons/TwitterIcon.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Icons/Github.vue?vue&type=script&setup=true&lang.ts": [],
-  "src/components/IconButtons.vue": [],
+  "src/components/IconButtons.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Avatar.vue?vue&type=script&setup=true&lang.ts": [],
   "src/composables/large.ts": [],
   "src/components/ProfileCard.vue": [],
@@ -79,7 +81,7 @@
   "../../../../../__uno.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.f67703f3.js-unocss-hash.css": [],
+  "assets/app.68588230.js-unocss-hash.css": [],
   "node_modules/.pnpm/workbox-window@6.5.3/node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
     "/assets/virtual_pwa-register.3ff79d29.js"
   ],
@@ -87,69 +89,84 @@
     "/assets/virtual_pwa-register.3ff79d29.js"
   ],
   "src/layouts/404.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/404.36b8e297.js"
+    "/assets/404.007c7476.js"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.36b8e297.js"
+    "/assets/404.007c7476.js"
   ],
   "src/layouts/home.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/home.874f755d.js"
+    "/assets/home.072c68af.js"
   ],
   "src/layouts/home.vue": [
-    "/assets/home.874f755d.js"
+    "/assets/home.072c68af.js"
   ],
   "../../../../../imgs/flying.jpg": [
-    "/assets/toNewMember.996142a8.js"
+    "/assets/toNewMember.fa619184.js"
   ],
   "src/pages/posts/toNewMember.md": [
-    "/assets/toNewMember.996142a8.js"
+    "/assets/toNewMember.fa619184.js"
   ],
   "src/components/Back.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/Post.vue_vue_type_script_setup_true_lang.7321cde5.js"
+    "/assets/Post.vue_vue_type_script_setup_true_lang.aa125fa2.js"
   ],
   "src/components/Post.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/Post.vue_vue_type_script_setup_true_lang.7321cde5.js"
+    "/assets/Post.vue_vue_type_script_setup_true_lang.aa125fa2.js"
   ],
   "../../../../../imgs/site.png": [
-    "/assets/myNewWebsite.5929b030.js"
+    "/assets/myNewWebsite.f03d8b06.js"
   ],
   "../../../../../imgs/dark.jpg": [
-    "/assets/myNewWebsite.5929b030.js"
+    "/assets/myNewWebsite.f03d8b06.js"
   ],
   "../../../../../imgs/dark2.png": [
-    "/assets/myNewWebsite.5929b030.js"
+    "/assets/myNewWebsite.f03d8b06.js"
+  ],
+  "../../../../../imgs/myNewWebsite/meta-label.png": [
+    "/assets/myNewWebsite.f03d8b06.js"
+  ],
+  "../../../../../imgs/myNewWebsite/pwa.png": [
+    "/assets/myNewWebsite.f03d8b06.js"
+  ],
+  "../../../../../imgs/myNewWebsite/lighthouse/lighthouse.jpg": [
+    "/assets/myNewWebsite.f03d8b06.js"
+  ],
+  "../../../../../imgs/myNewWebsite/lighthouse/treemap.png": [
+    "/assets/myNewWebsite.f03d8b06.js"
   ],
   "src/pages/posts/myNewWebsite.md": [
-    "/assets/myNewWebsite.5929b030.js"
+    "/assets/myNewWebsite.f03d8b06.js"
   ],
   "src/pages/posts/demo.md": [
-    "/assets/demo.cd601b54.js"
+    "/assets/demo.dfa03cf6.js"
   ],
   "src/pages/posts/ReactRerender.md": [
-    "/assets/ReactRerender.4f78a647.js"
+    "/assets/ReactRerender.f0dc7a10.js"
   ],
-  "README.md": [
-    "/assets/about.e4ed3c90.js"
+  "src/components/Project.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/about.701138ec.js",
+    "/assets/about.b0307249.css"
   ],
-  "src/components/AboutMe.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/about.e4ed3c90.js"
+  "src/pages/about.md?vue&type=style&index=0&lang.css": [
+    "/assets/about.701138ec.js",
+    "/assets/about.b0307249.css"
   ],
-  "src/pages/about.vue": [
-    "/assets/about.e4ed3c90.js"
+  "src/pages/about.md": [
+    "/assets/about.701138ec.js",
+    "/assets/about.b0307249.css"
   ],
   "src/pages/[...all].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_...all_.51f10a3b.js"
+    "/assets/_...all_.39ca0c78.js"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.51f10a3b.js"
+    "/assets/_...all_.39ca0c78.js"
   ],
   "src/store/user.ts": [
-    "/assets/_name_.aac2d9c4.js"
+    "/assets/_name_.e252f9ea.js"
   ],
   "src/pages/hi/[name].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_name_.aac2d9c4.js"
+    "/assets/_name_.e252f9ea.js"
   ],
   "src/pages/hi/[name].vue": [
-    "/assets/_name_.aac2d9c4.js"
+    "/assets/_name_.e252f9ea.js"
   ]
 }
