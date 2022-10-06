@@ -75,7 +75,7 @@ html.dark {
 ```
 
 ## 语言切换-国际化 i18n
-因为我只支持 en 和 zh-CN，也就是英语和汉语，因此做成了和dark mode一样。如果是多种语言，这个最好用设置去切。useI18n 和 vscode-i18n-ally的插件，开发体验很好。
+因为我只支持 en 和 zh-CN，也就是英语和汉语，因此做成了和dark mode一样。如果是多种语言，这个最好用设置去切。`useI18n` 和 `vscode-i18n-ally`的插件，开发体验很好。
 
 多做的就是配合dayjs的国际化。
 
@@ -100,7 +100,8 @@ a标签里加了 norefer noopener nofollow target="_blank"，属于a标签的冷
 
 
 ## 滚动条 scroll-bar
-解决ios的橡皮筋问题，`overscroll-behavior:none;`
+解决桌面端橡皮筋问题，`overscroll-behavior:none;`，
+ios移动端橡皮筋影响不是很大，于是还没管。
 
 `::-webkit-scrollbar`
 `::-webkit-scrollbar-track`
@@ -122,21 +123,20 @@ Vite-ssg生成静态站点
 1. a标签应该有href，语言切换按钮随手用的a标签，我理应用button
 2. img带alt，利于爬虫抓取
 
+## 渐进web应用 PWA
+由于PWA必须使用https，使用 https-localhost 的 `serve ./dist`，可在本地调试。
+![pwa](/imgs/pwa.png)
 
 ## 后续优化 Optimization
-
 首先使用lighthouse和web-vital进行评分测算
-![lighthouse](/imgs/myNewWebSite/lighthouse/lighthouse.jpg)
-
+![lighthouse](/imgs/myNewWebsite/lighthouse/lighthouse.jpg)
 ![treemap](/imgs/myNewWebsite/lighthouse/treemap.png)
 
 DA证书，升级https
 
 给img加alt标签
 
-
-
-## 局域网调试
+## 开发环境——局域网调试
 ```typescript
 //vite.config.ts
 defineConfig({
@@ -145,3 +145,5 @@ defineConfig({
   },
 })
 ```
+## 持续集成持续部署 CI/CD
+使用Github Actions，但在linux下对文件夹名称大小写很敏感。写错路径大小写，在本地虽然能跑，容易到CI上跑不起来。
