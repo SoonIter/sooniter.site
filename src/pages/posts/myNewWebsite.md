@@ -94,7 +94,32 @@ a标签里加了 norefer noopener nofollow target="_blank"，属于a标签的冷
 ## 毛玻璃头部导航栏 HeaderBar
 同上，但显示方式为弹出
 
-滑动时的隐藏，`const { isScrolling } = useScroll()`
+向上滑动时的隐藏，`const { isScrolling, dirctions } = useScroll()`
+不过优化一下细节，对滑动进行防抖，切true的时候秒切，切false的时候防抖
+
+```typescript
+export const useThrottledIsScrollingToTop = () => {
+  const { isScrolling, y, directions } = useScroll(window)
+  const { top: toTop } = toRefs(directions)
+  const throttledIsScrollingToTop = ref(false)
+  let timer: null | number = null
+  watchEffect(() => {
+    if (isScrolling.value === false) {
+      timer !== null && clearTimeout(timer)
+      timer = setTimeout(() => {
+        throttledIsScrollingToTop.value = false
+      }, 750) as unknown as number
+    }
+    else {
+      throttledIsScrollingToTop.value = toTop.value
+    }
+  })
+
+  return { y, throttledIsScrollingToTop }
+}
+
+```
+
 
 毛玻璃用 `backdrop:filter(20px);`
 
@@ -110,6 +135,11 @@ ios移动端橡皮筋影响不是很大，于是还没管。
 滚动条是不占页面的宽度的，也就是额外宽度，如果在意这个的话，[OverlayScrollbars](https://github.com/KingSora/OverlayScrollbars)可以解决
 
 `window.scrollTo({ smooth: true })`和`scroll-behavior: smooth`适合锚点的跳转，平滑滚动，而不是瞬间移动。
+
+
+## 进度条 progress-bar
+
+用nprogress与路由守卫即可，进度条的进度确实和网络、页面加载无什么关系，只是为了显示loading。
 
 ## 搜索引擎优化 SEO
 Vite-ssg生成静态站点

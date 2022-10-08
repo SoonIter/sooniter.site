@@ -237,6 +237,7 @@ declare global {
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
   const useThrottle: typeof import('@vueuse/core')['useThrottle']
   const useThrottleFn: typeof import('@vueuse/core')['useThrottleFn']
+  const useThrottledIsScrollingToTop: typeof import('./composables/useThrottledIsScrollingToTop')['useThrottledIsScrollingToTop']
   const useThrottledRefHistory: typeof import('@vueuse/core')['useThrottledRefHistory']
   const useTimeAgo: typeof import('@vueuse/core')['useTimeAgo']
   const useTimeout: typeof import('@vueuse/core')['useTimeout']
@@ -518,6 +519,7 @@ declare module '@vue/runtime-core' {
     readonly useTextareaAutosize: UnwrapRef<typeof import('@vueuse/core')['useTextareaAutosize']>
     readonly useThrottle: UnwrapRef<typeof import('@vueuse/core')['useThrottle']>
     readonly useThrottleFn: UnwrapRef<typeof import('@vueuse/core')['useThrottleFn']>
+    readonly useThrottledIsScrollingToTop: UnwrapRef<typeof import('./composables/useThrottledIsScrollingToTop')['useThrottledIsScrollingToTop']>
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>
     readonly useTimeAgo: UnwrapRef<typeof import('@vueuse/core')['useTimeAgo']>
     readonly useTimeout: UnwrapRef<typeof import('@vueuse/core')['useTimeout']>
