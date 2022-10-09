@@ -16,13 +16,7 @@ const link = toRef(props, 'link')
 const { title = ref(''), description = ref(''), duration: _duration = ref(''), image: _image = ref(''), lang, date: _date = ref('') } = toRefs(props.frontmatter ?? {})
 // date
 const date = useFormatDate(_date as Ref<string>)
-const { locale } = useI18n()
-const duration = computed(() => {
-  if (locale.value === 'zh-CN')
-    return `预计${_duration?.value?.replace('min', '分钟')}`
-  else
-    return _duration.value
-})
+const duration = useFormatDuration(_duration as Ref<string>)
 
 // image
 const image = computed(() => {

@@ -168,6 +168,7 @@ declare global {
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
   const useFormatDate: typeof import('./utils/formatDate')['useFormatDate']
+  const useFormatDuration: typeof import('./utils/useFormatDuration')['useFormatDuration']
   const useFps: typeof import('@vueuse/core')['useFps']
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
@@ -450,6 +451,7 @@ declare module '@vue/runtime-core' {
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
     readonly useFormatDate: UnwrapRef<typeof import('./utils/formatDate')['useFormatDate']>
+    readonly useFormatDuration: UnwrapRef<typeof import('./utils/useFormatDuration')['useFormatDuration']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>

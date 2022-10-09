@@ -5,6 +5,8 @@ const { frontmatter } = defineProps({
     required: true,
   },
 })
+const date = useFormatDate(frontmatter.date)
+const duration = useFormatDuration(frontmatter?.duration ?? '')
 
 const router = useRouter()
 const route = useRoute()
@@ -82,8 +84,8 @@ onMounted(() => {
 
       <div flex flex-row justify-between p-0>
         <div v-if="frontmatter.date">
-          <span>{{ formatDate(frontmatter.date) }}</span>
-          <span v-if="frontmatter.duration">{{ ` · ${frontmatter.duration}` }}</span>
+          <span>{{ date }}</span>
+          <span v-if="duration">{{ ` · ${duration}` }}</span>
         </div>
       </div>
     </div>
