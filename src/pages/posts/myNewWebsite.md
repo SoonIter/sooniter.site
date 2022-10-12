@@ -14,13 +14,17 @@ image: site.png
 
 算是很多收获吧，一些之前没有注意到的细节让我惊为天人。
 
-先讲一讲Vitesse的、标准的，再讲一讲我原创的。
+先讲一讲Vitesse的、标准的，再讲一讲我遇到的。
 ## 响应式布局 Responsive
 我选择的分界线是md 768px，是ipad mini的宽度，尽量让平板设备偏向电脑，不至于太空太丑。个人觉得调的还是比较舒服.
 
 大屏靠左对齐，小屏居中对齐。
 
 微调卡片间距，字体大小。
+
+使用meta禁用放大缩小
+`<meta name="viewport" content="user-scalable=no" >`
+
 
 因为对交互要求不高，无双击，也不需要解决300ms的移动端点击延时。移动端交互，计划之后用[Lath](https://lath.dev/)，做的很赞，值得学习
 
@@ -30,7 +34,9 @@ image: site.png
 ## 暗黑模式 dark mode
 ### 三种模式 auto light dark + 一个 smart 切换规则
 暗黑模式共有三种，auto、light、dark，主流产品飞书等，会提供这三种选项，让用户自主选择。
+
 ![Lark dark](/imgs/dark.jpg)
+
 light和dark不必解释，auto是指跟随系统——受控于系统选择。
 
 默认auto能解决大部分问题，但若是需要切换还要进设置中进一步操作。
