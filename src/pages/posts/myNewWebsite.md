@@ -22,8 +22,9 @@ image: site.png
 
 微调卡片间距，字体大小。
 
-使用meta禁用放大缩小
-`<meta name="viewport" content="user-scalable=no" >`
+使用meta里的user-scalable禁用放大缩小，但大部分移动端浏览器并没有遵循禁止缩放，建议是不用
+
+`<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">`
 
 
 因为对交互要求不高，无双击，也不需要解决300ms的移动端点击延时。移动端交互，计划之后用[Lath](https://lath.dev/)，做的很赞，值得学习
