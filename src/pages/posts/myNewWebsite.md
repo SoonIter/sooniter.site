@@ -10,11 +10,11 @@ image: site.png
 [[TOC]]
 <img src="/imgs/site.png"/>
 
-我的新的个人博客，选择使用[*Vitesse*](https://github.com/antfu/vitesse)搭建，借鉴了一点[antfu的个人主页](https://antfu.me/)，这个由antfu编写的模版让我用的很爽
+我的新的个人博客，选择使用[*Vitesse*](https://github.com/antfu/vitesse)搭建，借鉴了[antfu的个人主页](https://antfu.me/)，这个由antfu编写的模版让我用的很爽
 
 算是很多收获吧，一些之前没有注意到的细节让我惊为天人。
 
-先讲一讲Vitesse的、标准的，再讲一讲我遇到的。
+先讲一讲Vitesse的，再讲一讲我遇到的。
 ## 响应式布局 Responsive
 我选择的分界线是md 768px，是ipad mini的宽度，尽量让平板设备偏向电脑，不至于太空太丑。个人觉得调的还是比较舒服.
 
@@ -145,7 +145,6 @@ ios移动端橡皮筋影响不是很大，于是还没管。
 
 
 ## 进度条 progress-bar
-
 用nprogress与路由守卫即可，进度条的进度确实和网络、页面加载无什么关系，只是为了显示loading。
 
 ## 搜索引擎优化 SEO
@@ -161,15 +160,16 @@ Vite-ssg生成静态站点
 2. img带alt，利于爬虫抓取
 
 ## 渐进web应用 PWA
-由于PWA必须使用https，使用 https-localhost 的 `serve ./dist`，可在本地调试。
+由于PWA必须使用https调试，使用 https-localhost 的 `serve ./dist`，可在本地调试。
 ![pwa](/imgs/myNewWebsite/pwa.png)
 
 ## 后续优化 Optimization
-首先使用lighthouse和web-vital进行评分测算
+CDN，这个netlify帮忙搞定了
+
+使用lighthouse和web-vital进行评分测算
 ![lighthouse](/imgs/myNewWebsite/lighthouse/lighthouse.jpg)
 ![treemap](/imgs/myNewWebsite/lighthouse/treemap.png)
 
-DA证书，升级https
 
 给img加alt标签
 
@@ -183,4 +183,5 @@ defineConfig({
 })
 ```
 ## 持续集成持续部署 CI/CD
-使用Github Actions，但在linux下对文件夹名称大小写很敏感。写错路径大小写，在本地虽然能跑，容易到CI上跑不起来。
+DA证书，升级https
+使用Github Actions，但在linux下对文件夹名称大小写很敏感。写错路径大小写，在本地虽然能跑，容易到CI上跑不起来。Netlify和Vercel监听Github仓库可自动部署。
