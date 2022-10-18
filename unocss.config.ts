@@ -31,8 +31,7 @@ export default defineConfig({
     presetTypography(),
     presetWebFonts({
       fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
+        sans: 'Inter',
         mono: 'DM Mono',
       },
     }),

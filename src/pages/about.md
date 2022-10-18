@@ -12,9 +12,9 @@ title: About Me
     margin: 0 !important;
   }
   section img{
-    display: inline-block;
-    width:20px;
-    height:20px;
+    display: inline-block !important;
+    width:20px !important;
+    height:20px !important;
     padding:0 !important;
     margin:0 !important;
   }

@@ -3,7 +3,7 @@ title: 给工作室技术新人的一封信
 description: 我在大学互联网工作室做前端组组长，主要还是想作为过来人，回头拉一把尚且还是萌新的你们
 date: 2022-07-23T16:00:00.000+00:00
 lang: zh
-duration: 20min
+duration: 6min
 image: flying.jpg
 ---
 [[TOC]]

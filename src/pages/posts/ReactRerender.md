@@ -3,7 +3,7 @@ title: React的useCallback和useEvent
 description: 这是我在知乎上的一篇回答，切题地讲一讲，除了这些API，React真正减少rerender的思路
 date: 2022-08-30T00:00:00.000+00:00
 lang: zh
-duration: 10min
+duration: 20min
 image: https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b89d9b11f664eff833f9722b3f8d715~tplv-k3u1fbpfcp-zoom-1.image
 ---
 

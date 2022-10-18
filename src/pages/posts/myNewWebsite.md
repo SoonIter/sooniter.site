@@ -27,7 +27,7 @@ image: site.png
 `<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">`
 
 
-因为对交互要求不高，无双击，也不需要解决300ms的移动端点击延时。移动端交互，计划之后用[Lath](https://lath.dev/)，做的很赞，值得学习
+因为对交互要求不高，无双击，也不需要解决300ms的移动端点击延时。多端适配，难点不在布局，而在交互，计划之后用[Lath](https://lath.dev/)，做的很赞，值得学习
 
 重点在Tabs标签栏的左右滑动切换，这个在移动端还是比较时髦的，在react-native里有react-native-tab-view，web上重点在于preload二级路由
 

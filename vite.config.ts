@@ -99,7 +99,7 @@ export default defineConfig({
       headEnabled: true,
       wrapperComponent: 'post',
       markdownItOptions: {
-        quotes: '“”‘’',
+        quotes: '""\'\'',
       },
       markdownItSetup(md) {
         // https://prismjs.com/
