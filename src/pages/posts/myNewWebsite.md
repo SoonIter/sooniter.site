@@ -22,7 +22,7 @@ image: site.png
 
 微调卡片间距，字体大小。
 
-使用meta里的user-scalable禁用放大缩小，但大部分移动端浏览器并没有遵循禁止缩放，建议是不用
+使用meta里的user-scalable禁用放大缩小，但大部分移动端浏览器并没有遵循禁止缩放，对于pwa比较有效
 
 `<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">`
 
@@ -143,6 +143,7 @@ ios移动端橡皮筋影响不是很大，于是还没管。
 
 `window.scrollTo({ smooth: true })`和`scroll-behavior: smooth`适合锚点的跳转，平滑滚动，而不是瞬间移动。
 
+锚点的跳转参考这篇`scroll-padding-top`，以防被header挡住 [锚点跳转如何在基于跳转的位置上增加高度？ - diveng的回答 - 知乎](https://www.zhihu.com/question/557597184/answer/2703444936)
 
 ## 进度条 progress-bar
 用nprogress与路由守卫即可，进度条的进度确实和网络、页面加载无什么关系，只是为了显示loading。

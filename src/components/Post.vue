@@ -19,7 +19,7 @@ onMounted(() => {
   const navigate = () => {
     if (location.hash) {
       const linkElement = document.body.querySelector(decodeURIComponent(location.hash))
-      linkElement?.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' })
+      linkElement?.scrollIntoView({ block: 'start', behavior: 'smooth' })
       linkElement?.animate([
         {
           color: 'red',
