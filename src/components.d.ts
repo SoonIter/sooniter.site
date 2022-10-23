@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     Juejin: typeof import('./components/Icons/Juejin.vue')['default']
     Language: typeof import('./components/Icons/Language.vue')['default']
     Leetcode: typeof import('./components/Icons/Leetcode.vue')['default']
+    Modal: typeof import('./components/Modal.vue')['default']
     Post: typeof import('./components/Post.vue')['default']
     ProfileCard: typeof import('./components/ProfileCard.vue')['default']
     Project: typeof import('./components/Project.vue')['default']
