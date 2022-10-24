@@ -96,7 +96,7 @@ function closeModal() {
     <Teleport to="body">
       <!-- 使用这个 modal 组件，传入 prop -->
       <modal :show="!!showModal" @close="closeModal">
-        <img :src="showModal && showModal.src || ''">
+        <img :src="showModal && showModal.src || ''" w-100vw max-w-200>
       </modal>
     </Teleport>
     <div v-if="frontmatter.display ?? frontmatter.title" class="mb-8">
