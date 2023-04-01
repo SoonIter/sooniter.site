@@ -4,8 +4,8 @@ description: 我对React、Vue、Solid、Svelte、Qwik这些前端的理解
 date: 2022-10-14
 lang: zh
 duration: 4min
-image: https://img1.imgtp.com/2022/10/04/Dvy2gk78.jpg
+image: solid_icon.svg
 ---
 [[TOC]]
 
-咱们应用层日理万机，不断减少复杂度才是正解。
+咱们应用层日理万机，如果纠结工具是否趁手那你一定是在天天搬砖了。
