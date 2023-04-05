@@ -3,7 +3,7 @@ title: 前端框架环游史
 description: 我对React、Vue、Solid、Svelte、Qwik这些前端的理解
 date: 2022-10-14
 lang: zh
-duration: 4min
+duration: 2s
 image: solid_icon.svg
 ---
 [[TOC]]
