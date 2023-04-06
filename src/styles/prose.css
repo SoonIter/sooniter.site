@@ -394,7 +394,7 @@ code::before::after {
 }
 
 .prose img {
-  @apply max-w-120;
+  max-width: min(calc(100vw - 2em), 400px);
   margin-top: 2em;
   margin-bottom: 2em;
 }
