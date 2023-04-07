@@ -23,6 +23,8 @@ image: frontend-monorepo/pnpm.png
 
 3. `@hello/b` 项目中安装新版本的 A
 
+现在的工作流，修改 `@hello/a` 的代码后，可以立即反馈到开发 `@hello/b` 上
+
 但为了这个爽点, 要付出多少代价?
 
 ## 连环构建 和 依赖拓扑
@@ -66,10 +68,10 @@ monorepo 工具比如 `pnpm run` 和 `moon run` 需通过分析 `package.json`, 
 <img w-300px src="/imgs/frontend-monorepo/project-topo-graph.png"/>
 
 ```txt
-util:build --> component:build --> web1:build (--> web1:test,e2e...)
+util:build --> component:build --> web1:build --> (web1:test,e2e...)
 ```
 
-`pnpm run` 到这里就结束了, 这时若再启动 web2:build, monorepo 工具会复用缓存的结果
+`pnpm run` 到这里就结束了, 这时若再启动 `web2:build`, monorepo 工具会复用缓存的结果
 
 ```txt
 util:build(cached) -> component:build(cached) -> web2:build
@@ -86,16 +88,15 @@ build 拖着这条又臭又长的链路还算勉强可以接受, start 也要深
 
 在 monorepo 下开发此项目, 你要经历如下
 
-1. 多开 start, 需手动按顺序开启 util:start component:start web1:start
+1. 多开 start, 需手动按顺序开启 `util:start` `component:start` `web1:start`
 
-2. 资源处理, 把 css 等资源放进 js 中可以, 但中间哪个包放进去了, 想再拿出来就很难了
+2. 资源处理, 把 less css 等资源放进 js 中可以, 但中间哪个包放进去了, 想再拿出来就很难了
 
-3. hmr 极慢, 若修改 util 的源码 -> util 构建新的产物 ->
-component 监听到源码改变 -> component 构建新的产物 -> web1 监听到源码改变 -> web1 构建新的产物, 一顿连环下来, 极慢的 hmr 往往难以忍受
+3. hmr 极慢, 若修改 util 的源码 -> util 构建新的产物 -> component 监听到源码改变 -> component 构建新的产物 -> web1 监听到源码改变 -> web1 构建新的产物, 一顿连环下来, 极慢的 hmr 往往难以忍受
 
-4. 复杂度高到挂
+4. 复杂度 "高到挂", 例如
 
-在 2 中的例子里, 增加一条依赖, 让 web1 又依赖 util
+在 3 中的例子里, 增加一条依赖, 让 web1 又依赖 util
 
 ```txt
   web1 -> component -> util
@@ -144,7 +145,7 @@ module.exports = {
 }
 ```
 
-注意框架可能由于性能, loader 默认忽略 node_modules, 比如 nextjs 需开启
+> 注意框架可能由于性能, loader 默认忽略 node_modules, 比如 nextjs 需开启
 
 ```js
 // next.config.js
@@ -161,31 +162,11 @@ module.exports = {
 
 1. 高度一致的构建环境
 
-2. 收敛自定义构建行为, 中间包想在编译时做点事情, 比如替换掉 `process.env.NODE_ENV` 几乎不可能了
+2. 收敛自定义构建行为, 中间包想在编译时做点事情, 比如替换掉 `\process.\env\.NODE_ENV` 几乎不可能了
 
 3. 开发生产的不一致, 发包后的产物挂掉浑然不知
 
-4. 和不使用 monorepo 直接使用源码文件夹没有什么区别 ...
-
-## 臭名昭著的 找不到包 -- Cannot found module "xxx"
-
-### 幻影依赖
-
-由于 npm 将所有依赖 hoist 到 node_modules,  node 逐级向上查找 node_modules 时可以找到未声明到 `package.json` 中的依赖, 造成开发可用但发包后报 `Cannot found module "xxx"`
-
-解决方法是用 包管理器给的后门,比如 pnpm 的 `overrides` `packageExtensions` `hook.readPackage`, 修复三方包漏写的,写错的 `package.json`
-
-且 pnpm 采用了 .pnpm + hardlink + symlink, 来限制顶层 hoist 的行为, 算是已经较好地解决, 对开发质量有追求的开发者已经着手使用 类 pnpm 的手段来治理 hoist
-
-但造成 `Cannot found module` 的, 绝对不止 `shamefully-hoist` 一个
-
-### devDependencies 造成的幻影依赖
-
-`devDeps` 和 `deps` 会被无差别地下载到 `node_modules` 中, 开发时可以不报错地 import devDependencies, 而发包后由于不下载 devDependencies 依然可以造成 `Cannot found module`
-
-monorepo 中无疑将这个问题放大了, 写 `"@xxx/util": "workspace:*"` 明明可用, 改成 `"@xxx/util": "1.1.0"` 就不可用了,
-
-和上一条源码引入一样, monorepo 会放大开发,生产环境不一致的问题, 我们使用 monorepo 中的 "包", 但我们已经超过了 "包" 所能触碰到的范围, 这一问题在下一条更加明显
+4. 为什么不直接放弃 monorepo 而使用源码文件夹呢 ...
 
 ## 集中式依赖管理
 
@@ -203,7 +184,7 @@ pnpm, Cargo 中的 `overrides` 都要写在根目录.
 }
 ```
 
-安装后 `a>react@18.2.0>loose-envify@1.4.0>js-token@4.0.0`, 如果这个是个 monorepo, 再来一个 b 包, 它会复用 react@18.2.0
+安装后 `a>react@18.2.0>loose-envify@1.4.0>js-token@4.0.0`, 如果这个是个 monorepo, 再来个如下的 b 包, 它会复用 react@18.2.0
 
 ```json
 // b/package.json
@@ -243,16 +224,16 @@ libs/b:
 
 生成的结构
 
-```txt
-<!-- a 和 b 使用相同的 react@18.2.0 -->
+```bash
+# a 和 b 使用相同的 react@18.2.0
 a > react@18.2.0 > loose-envify@1.4.0 > js-tokens@4.0.0
 b /
 ```
 
 若 b 这条链路上但凡不同一点, 都不能叫做 "同一份 react"
 
-```txt
-<!-- a 和 b 实际使用的是两个 React -->
+```bash
+# a 和 b 实际使用的是两个 React
 a > react@18.2.0 > loose-envify@1.4.0 > js-tokens@4.0.0
 b > react@18.2.0 > loose-envify@1.4.0 > js-tokens@5.0.0
 ```
@@ -261,14 +242,14 @@ b > react@18.2.0 > loose-envify@1.4.0 > js-tokens@5.0.0
 
 所以给 a 和 b 形成的 monorepo 安装依赖,你可以近似理解为给以下的 c 单包安装依赖
 
-> PS: 注意是近似哈
+> PS: 注意是近似哈，便于理解
 
 ```json
 // c/package.json
 {
   "name": "c",
   "dependencies": {
-    "react": "^18.2.0" // 会取个 "^18.2.0" 和 "^18.1.0" 都满足的值
+    "react": "^18.2.0" // 取个 "^18.2.0" 和 "^18.1.0" 都满足的值
   }
 }
 ```
@@ -282,27 +263,79 @@ a 依赖 "react": "<=18.2.0"
 b 依赖 "react": ">=18.1.0"
 ```
 
-开发者根据的是 以下的 c 包来安装依赖
+开发者根据的是 以下的虚拟 c 包来安装依赖
 
 ```txt
-c 依赖 "react": ">=18.1.0 && <=18.2.0"
+虚拟 c 依赖 "react": ">=18.1.0 && <=18.2.0"
 ```
 
 开发者下到的版本是 `"react": "18.2.0"`, 看似非常合理对不对 ?
 
 但在b包的用户角度来看, 却吃了瘪
 
-b包用户下载到 b 根据 semver ">=18.1.0" 下到了最新 latest 的 `react@18.11.0` 直接挂了
+b包用户下载到 b 根据 semver `">=18.1.0"` 下到了最新 latest 的 `react@18.11.0` 直接挂了
 
-> "我擦, 你 tm 写着 >=18.1.0 背地里用的结果是 >=18.1.0 && <=18.2.0, 老子用的是 18.11.0, 直接挂了"
+> "我擦, 你 tm 写着 >=18.1.0 背地里自己用的是 >=18.1.0 && <=18.2.0, 老子用的是 18.11.0, 直接挂了"
 
 这个问题同样出现在 Cargo, 用户使用 swc 时 就难以维护 swc 这些包的内部关系, 所以尽量只引入 `swc_core` 这一个包, 特性由 features 开关.
 
 但话又说回来, 你虽然以 monorepo 开发, 但只暴露一个包作为入口, 是不是和单仓没有区别了 ?
 
-### 多实例问题
+## 臭名昭著的 找不到包 -- Cannot found module "xxx"
+
+### 幻影依赖
+
+由于 npm 将所有依赖 hoist 到 node_modules,  node 逐级向上查找 node_modules 时可以找到未声明到 `package.json` 中的依赖, 造成开发可用但发包后报 `Cannot found module "xxx"`
+
+解决方法是用 包管理器给的后门,比如 pnpm 的 `overrides` `packageExtensions` `hook.readPackage`, 修复三方包漏写的,写错的 `package.json`
+
+且 pnpm 采用了 .pnpm + hardlink + symlink, 来限制顶层 hoist 的行为, 算是已经较好地解决, 对开发质量有追求的开发者已经着手使用 类 pnpm 的手段来治理 hoist
+
+但造成 `Cannot found module` 的, 绝对不止 `shamefully-hoist` 一个
+
+### devDependencies 造成的幻影依赖
+
+开发环境下，`devDeps` 和 `deps` 会被无差别地下载到 `node_modules` 中, 开发时可以不报错地 import devDependencies, 而发包后由于不下载 devDependencies 依然可以造成 `Cannot found module "xxx"`
+
+monorepo 中无疑将这个问题放大了, 写 `"@xxx/util": "workspace:*"` 明明可用, 改成 `"@xxx/util": "1.1.0"` 就不可用了,
+
+和上一条源码引入一样, monorepo 会`放大开发和生产环境不一致的问题`, 我们使用 monorepo 中的 "包", 但我们已经超过了 "包" 所能触碰到的范围, 这一问题在下一条更加明显
+
+
+### 多实例问题，以及 monorepo 中的 dedupe
 
 我相信你在 monorepo 里必定遇到过 react 多实例问题
+
+以该项目为例：web 和 component 均依赖 `react@^18`，由于一些原因下载到了不同的 react 版本。
+
+```txt
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── .npmrc
+├── apps
+│   └── web
+│       ├── node_modules
+│       │   └── react@18.2.0
+│       └── package.json
+└── packages
+    └── component
+        ├── node_modules
+        │   └── react@18.1.0
+        └── package.json
+```
+
+由于 node resolve 逐级向上查找的特性，当 web 引入 component 的时候，web 里的源码 resolve 的是 `react@18.2.0`，component 的源码 resolve 的是 `react@18.1.0`，全局产生了多个 React 实例
+
+这造成了致命性的问题
+
+1. 对于 `React`，`React-dom`, `React-router`，`Redux` 这种希望全局唯一实例的包会产生运行时错误
+
+2. 重复打包增大包体，而且不止重复打一个，是打一整条链路，`react@18.2.0>loose-envify@1.4.0>js-tokens@5.0.0` 和 `react@18.1.0>loose-envify@1.3.0>js-tokens@4.0.0`
+
+并且这种情况下 `component` 的 `package.json` 是否写对都没有用，写进 `deps` `devDeps` 还是 `peerDeps`, 在开发环境下表现都是一样的
+
+这在单仓下是不常遇到的，因为 web 下载 component，多半会由于 semver，`react@^18` 解析到同一个版本，并且可以使用 `peerDeps` 来保证组件库和 app 依赖到同一份 react
+
 #### 一包一版本 —— Cargo
 
 #### 一包多版本 —— node_modules
