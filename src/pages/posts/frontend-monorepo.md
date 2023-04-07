@@ -3,7 +3,7 @@ title: 前端 monorepo 之殇
 description: 前端 monorepo 存在哪些问题，怎么管理前端 monorepo ？
 date: 2023-04-06
 lang: zh
-duration: 20min
+duration: 30min
 image: frontend-monorepo/pnpm.png
 ---
 
@@ -88,13 +88,13 @@ build 拖着这条又臭又长的链路还算勉强可以接受, start 也要深
 
 在 monorepo 下开发此项目, 你要经历如下
 
-1. 多开 start, 需手动按顺序开启 `util:start` `component:start` `web1:start`
+1. **多开 start**, 需手动按顺序开启 `util:start` `component:start` `web1:start`
 
-2. 资源处理, 把 less css 等资源放进 js 中可以, 但中间哪个包放进去了, 想再拿出来就很难了
+2. **资源处理**, 把 less css 等资源放进 js 中可以, 但中间哪个包放进去了, 想再拿出来就很难了
 
-3. hmr 极慢, 若修改 util 的源码 -> util 构建新的产物 -> component 监听到源码改变 -> component 构建新的产物 -> web1 监听到源码改变 -> web1 构建新的产物, 一顿连环下来, 极慢的 hmr 往往难以忍受
+3. **hmr 极慢**, 若修改 util 的源码 -> util 构建新的产物 -> component 监听到源码改变 -> component 构建新的产物 -> web1 监听到源码改变 -> web1 构建新的产物, 一顿连环下来, 极慢的 hmr 往往难以忍受
 
-4. 复杂度 "高到挂", 例如
+4. **复杂度 "高到挂"**, 例如
 
 在 3 中的例子里, 增加一条依赖, 让 web1 又依赖 util
 
@@ -103,7 +103,7 @@ build 拖着这条又臭又长的链路还算勉强可以接受, start 也要深
        -> util
 ```
 
-此时若更改 util 源码 --> web1 和 component 更新 --> web1 监听到 component 更新又该更新
+`此时若更改 util 源码` --> `web1 和 component 更新` --> `web1 监听到 component 更新又该更新`
 
 并发多个 hmr 的速度会随着依赖拓朴的复杂程度增加, 螺旋下滑, 甚至会算不明白而无响应甚至挂掉
 
@@ -111,9 +111,9 @@ build 拖着这条又臭又长的链路还算勉强可以接受, start 也要深
 
 并且下游主动配合统一构建环境, 比如 jsx 语法, 不要一个使用 React 一个使用 Preact 及其他类似的编译魔法
 
-引入源码, 修改 bundler 的 resolve 逻辑, 让 resolve 打到源码即可, 有很多方式
+引入源码, 实际上是有点 magic 的, 修改 bundler 的 resolve 逻辑, 让 resolve 打到源码即可
 
-开启方式 1 用 dev field 开启
+* 开启方式 1 用 mainField 开启
 
 ```js
 module.exports = {
@@ -135,7 +135,7 @@ module.exports = {
 exports 字段同上, 可见 [Vite 文档 resolve-conditions](https://vitejs.dev/config/shared-options.html#resolve-conditions)
 
 
-开启方式 2 用 resolve.alias 调
+* 开启方式 2 用 resolve.alias 调
 
 ```js
 module.exports = {
@@ -162,7 +162,7 @@ module.exports = {
 
 1. 高度一致的构建环境
 
-2. 收敛自定义构建行为, 中间包想在编译时做点事情, 比如替换掉 `\process.\env\.NODE_ENV` 几乎不可能了
+2. 收敛自定义构建行为, 中间包想在编译时做点事情, 比如替换掉 `process.env.NODE__ENV` 几乎不可能了
 
 3. 开发生产的不一致, 发包后的产物挂掉浑然不知
 
@@ -242,10 +242,10 @@ b > react@18.2.0 > loose-envify@1.4.0 > js-tokens@5.0.0
 
 所以给 a 和 b 形成的 monorepo 安装依赖,你可以近似理解为给以下的 c 单包安装依赖
 
-> PS: 注意是近似哈，便于理解
+> PS: 注意是近似哈，为了便于理解
 
 ```json
-// c/package.json
+// 虚拟 c 包/package.json
 {
   "name": "c",
   "dependencies": {
@@ -275,7 +275,7 @@ b 依赖 "react": ">=18.1.0"
 
 b包用户下载到 b 根据 semver `">=18.1.0"` 下到了最新 latest 的 `react@18.11.0` 直接挂了
 
-> "我擦, 你 tm 写着 >=18.1.0 背地里自己用的是 >=18.1.0 && <=18.2.0, 老子用的是 18.11.0, 直接挂了"
+> "我擦, 你写的 >=18.1.0 背地里自己用的是 >=18.1.0 && <=18.2.0, 老子用的是 18.11.0, 直接挂了"
 
 这个问题同样出现在 Cargo, 用户使用 swc 时 就难以维护 swc 这些包的内部关系, 所以尽量只引入 `swc_core` 这一个包, 特性由 features 开关.
 
@@ -295,12 +295,11 @@ b包用户下载到 b 根据 semver `">=18.1.0"` 下到了最新 latest 的 `rea
 
 ### devDependencies 造成的幻影依赖
 
-开发环境下，`devDeps` 和 `deps` 会被无差别地下载到 `node_modules` 中, 开发时可以不报错地 import devDependencies, 而发包后由于不下载 devDependencies 依然可以造成 `Cannot found module "xxx"`
+开发环境下，`devDeps` 和 `deps` 会被无差别地下载到 `node_modules` 中, 开发时可以不报错地 import devDependencies, 而发包后由于只安装 `deps` 不安装 `devDependencies` 依然可以造成 `Cannot found module "xxx"`
 
 monorepo 中无疑将这个问题放大了, 写 `"@xxx/util": "workspace:*"` 明明可用, 改成 `"@xxx/util": "1.1.0"` 就不可用了,
 
 和上一条源码引入一样, monorepo 会`放大开发和生产环境不一致的问题`, 我们使用 monorepo 中的 "包", 但我们已经超过了 "包" 所能触碰到的范围, 这一问题在下一条更加明显
-
 
 ### 多实例问题，以及 monorepo 中的 dedupe
 
@@ -328,39 +327,116 @@ monorepo 中无疑将这个问题放大了, 写 `"@xxx/util": "workspace:*"` 明
 
 这造成了致命性的问题
 
-1. 对于 `React`，`React-dom`, `React-router`，`Redux` 这种希望全局唯一实例的包会产生运行时错误
+1. 对于 `React`，`React-dom`, `React-router`，`Redux` 这种全局单例的包构建成功，但会产生运行时错误
 
 2. 重复打包增大包体，而且不止重复打一个，是打一整条链路，`react@18.2.0>loose-envify@1.4.0>js-tokens@5.0.0` 和 `react@18.1.0>loose-envify@1.3.0>js-tokens@4.0.0`
 
 并且这种情况下 `component` 的 `package.json` 是否写对都没有用，写进 `deps` `devDeps` 还是 `peerDeps`, 在开发环境下表现都是一样的
 
-这在单仓下是不常遇到的，因为 web 下载 component，多半会由于 semver，`react@^18` 解析到同一个版本，并且可以使用 `peerDeps` 来保证组件库和 app 依赖到同一份 react
+这在单仓下是不常遇到，因为 web 下载 component，多半会由于 semver，`react@^18` 解析到同一个版本，并且可以使用 `peerDeps` 来保证组件库和 app 依赖到同一份 react
 
 #### 一包一版本 —— Cargo
 
+许多语言采用的是**一包一版本**的依赖管理，`Cargo` 在你 semver 版本冲突时，会直接让你不安这个依赖
+
+如下这个 a 包，依赖 `tokio@1.1.x`，当引入 b 包 依赖 `tokio@1.2.x`，这时直接报 resolve error，全局只允许存在一份 `tokio`
+
+```toml
+# a/Cargo.toml
+[dependencies]
+tokio = "~1.1.0"
+b = "../b"
+```
+
+```toml
+# b/Cargo.toml
+[dependencies]
+tokio = "~1.2.0" # Semver 版本冲突，直接报红
+```
+
+![cargo-multiple-version](/imgs/frontend-monorepo/cargo-multiple-version.png)
+
+这样带来的问题就是，对于三方依赖版本号的要求越来越苛刻。
+
+因此， Cargo 对使用 semver 表露了很大的语法倾向，希望开发者和使用者都使用较为宽松的版本号，例如：写 `tokio="1.0.0"` 实际上是 `tokio="^1.0.0"`，声明具体某个版本的语法是 `tokio="=1.0.0"`
+
+> PS: Rust 是真的好严格
+
 #### 一包多版本 —— node_modules
 
-### React 多实例, monorepo中的 dedupe，如何锁版本
+node 下的包管理，允许一个包存在多个版本，比如 `debug@5.0.0` `debug@4.0.0` 可以共存，但`react@18` 和 `react@17` 实际是不可以共存的啊，于是就带来了开头的问题。
 
-## 连环发包
+甚至会有 `react@17` 和 `react@18` 项目 同处于一个 monorepo下造成许多问题。
 
-可能你会说, 我的发包可以严守 semver 规范, 每个大版本和小版本都按规矩提升版本号, 这样依赖就清晰很多了, 那你一定不知道在 monorepo 下管理版本号且发包有多费劲
+#### 解决方法 —— monorepo中的 dedupe
+
+去除重复包，尽量靠近 **一包一版本**
+
+例如：使用 `pnpm dedupe` 来减少重复依赖，`component -> react@^18.1.0` 和 `app -> react@^18.2.0`，就应该只安装一份，但带来的问题是 monorepo 中各包隔离性减弱
+
+或者 编译时 hack resolve，手动指向同一份 react
+
+```js
+// webpack.config.js
+module.exports = {
+  resolve: {
+    alias: {
+      react: path.join(__dirname, 'node_modules/react')
+    }
+  }
+}
+```
+
+这个 hack 由于用的太多，vite 甚至直接支持了一个 `dedupe` 字段 ![Vite 官方文档 —— resolve-dedupe](https://vitejs.dev/config/shared-options.html#resolve-dedupe)
+
+但还有很多场景，无法手动指定 resolve，所以我很理解 yarn 为什么要做 pnp 模式，或许 pnp 才是未来 monorepo 的标配
+
+## 版本号管理
+
+可能你会说, 我的发包可以严守 semver 规范, 每个大版本和小版本都按规矩提升版本号，是不是问题就很少了，那你一定不知道在 monorepo 下管理版本号有多费劲
 
 ### changeset
 
+monorepo 里 changeset 的创意非常好，我修改哪个包就增加某个包的 changeset，`add-changeset` 来存储每个 commit 的更新意图。等到 `bump` 和 发包时，再根据依赖拓扑，更改上游的包，来同步最新版本。
+
+但问题随之而来，就是 monorepo 中的所有包，版本号参差不齐。
+
+一个 a 包是 `@1.3.1`，b 包可能是 `@2.0.0`，c 包可能是 `@4.0.0`
+
+开发者用的还好，用户直接又吃瘪
+
+使用了 `@xxx/a@1.3.1` 的用户，想再安一个 `@xxx/b`，但选版本号的时候犯了难，这些包看似在一个 scope 下，版本却毫无关联。
+
+你也不想使用 `react@18` 再引一个 `@types/react@19` 吧
+
+维护多个包，终究还是复杂的。
+
 ### fixed-packages linked-packages 和 bumpp
 
-## CI
+那，让 monorepo 的包使用同一版本号，用户用 `react@18.2.0` 自然联想到要装相同版本的 `react-dom@18.2.0` 不就好了。
+
+changeset 提供了 [fixed](https://github.com/changesets/changesets/blob/main/docs/fixed-packages.md) 和 [linked](https://github.com/changesets/changesets/blob/main/docs/linked-packages.md) 两种模式供用户选择。
+
+antfu 的 bumpp 则直接全仓库 `bump patch/minor/major` 来更新版本号
+
+缺点显而易见，我的包版本不遵循 semver 规范了
+
+<!-- ## CI
 
 ### build 下游，test 上游
 
+给 monorepo 找回一些尊严，那就是 -->
+
+
+总结，monorepo 会让开发者爽，但也只能爽一半，还会让用户不爽。
 
 由于以上问题, 我们重新思考, 以 "包" 为单位复用代码的 monorepo , 带来的这个复杂度是否值得
 
-pnpm 作者所在的公司开发了 [Bit](https://bit.dev/) , 已经不以 "包" 为单位分发代码, 而是以 "组件" 为单位, 组织方式也是一个一个的源码文件夹,不过增加了文件结构的约束, 无需写繁重的 package.json
+pnpm 作者所在的公司开发了 [Bit](https://bit.dev/) , 已经不以 "包" 为单位分发代码, 而是以 "组件" 为单位, 组织方式也是一个一个的源码文件夹,不过增加了文件结构的约束, 无需写繁重的 package.json ，具体是否好用还要由时间去检验
 
 
 ## 参考
 
 - [1][现代前端工程为什么越来越离不开 Monorepo?](https://juejin.cn/post/6944877410827370504)
-- []
+- [2][Cargo Book —— Dependency Resolution](https://rustwiki.org/en/cargo/reference/resolver.html#dependency-resolution)
+- [3][Vite 文档 —— resolve-dedupe](https://vitejs.dev/config/shared-options.html#resolve-dedupe)
