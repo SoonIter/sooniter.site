@@ -113,7 +113,7 @@ build 拖着这条又臭又长的链路还算勉强可以接受, start 也要深
 
 引入源码, 实际上是有点 magic 的, 修改 bundler 的 resolve 逻辑, 让 resolve 打到源码即可
 
-* 开启方式 1 用 mainField 开启
+* 开启方式 1 用 mainFields 开启
 
 ```js
 module.exports = {
@@ -172,7 +172,13 @@ module.exports = {
 
 pnpm, Cargo 中的 `overrides` 都要写在根目录.
 
-究其原因, 是在 monorepo 中安装依赖和 单包 下安装依赖一样的, 给一整个 monorepo 安装依赖, 相当于给一整个大包安装依赖.
+究其原因, 是 semver 解析策略产生的全局限制上下文, global constrain context
+
+为了便于理解, 我们可以抽象一下, 认为在 monorepo 中安装依赖和 单包 下安装依赖一样的, 给一整个 monorepo 安装依赖, 相当于给一整个大包安装依赖.
+
+看下面这个例子
+
+我们首先有一个 a 包
 
 ```json
 // a/package.json
@@ -233,7 +239,7 @@ b /
 若 b 这条链路上但凡不同一点, 都不能叫做 "同一份 react"
 
 ```bash
-# a 和 b 实际使用的是两个 React
+# 如果这条链路上有一点不相同, a 和 b 实际使用的是两个 React
 a > react@18.2.0 > loose-envify@1.4.0 > js-tokens@4.0.0
 b > react@18.2.0 > loose-envify@1.4.0 > js-tokens@5.0.0
 ```
@@ -335,32 +341,13 @@ monorepo 中无疑将这个问题放大了, 写 `"@xxx/util": "workspace:*"` 明
 
 这在单仓下是不常遇到，因为 web 下载 component，多半会由于 semver，`react@^18` 解析到同一个版本，并且可以使用 `peerDeps` 来保证组件库和 app 依赖到同一份 react
 
-#### 一包一版本 —— Cargo
+#### 一包一版本 —— 很多语言
 
-许多语言采用的是**一包一版本**的依赖管理，`Cargo` 在你 semver 版本冲突时，会直接让你不安这个依赖
+许多语言采用的是**一包一版本**的依赖, 在你 semver 版本冲突时，会直接让你不安这个依赖
 
-如下这个 a 包，依赖 `tokio@1.1.x`，当引入 b 包 依赖 `tokio@1.2.x`，这时直接报 resolve error，全局只允许存在一份 `tokio`
-
-```toml
-# a/Cargo.toml
-[dependencies]
-tokio = "~1.1.0"
-b = "../b"
-```
-
-```toml
-# b/Cargo.toml
-[dependencies]
-tokio = "~1.2.0" # Semver 版本冲突，直接报红
-```
-
-![cargo-multiple-version](/imgs/frontend-monorepo/cargo-multiple-version.png)
+这个 a 包，依赖 `xxx@1.1.x`，当引入 b 包 依赖 `xxx@1.2.x`，这时直接报 resolve error，全局只允许存在一份
 
 这样带来的问题就是，对于三方依赖版本号的要求越来越苛刻。
-
-因此， Cargo 对使用 semver 表露了很大的语法倾向，希望开发者和使用者都使用较为宽松的版本号，例如：写 `tokio="1.0.0"` 实际上是 `tokio="^1.0.0"`，声明具体某个版本的语法是 `tokio="=1.0.0"`
-
-> PS: Rust 是真的好严格
 
 #### 一包多版本 —— node_modules
 
