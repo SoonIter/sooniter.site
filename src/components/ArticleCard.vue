@@ -12,6 +12,7 @@ const props = defineProps<{
     date?: Date
   }
 }>()
+
 const link = toRef(props, 'link')
 const { title = ref(''), description = ref(''), duration: _duration = ref(''), image: _image = ref(''), lang, date: _date = ref('') } = toRefs(props.frontmatter ?? {})
 // date

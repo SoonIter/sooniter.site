@@ -11,6 +11,8 @@ image: basic.jpg
 
 # 产物引入和源码引入
 
+# 交给专门的 monorepo 维护者
+
 # 全局依赖管理
 
 ## semver 解析的全局上下文
@@ -19,4 +21,4 @@ image: basic.jpg
 
 # 及时同步和原子提交
 
-# 测试驱动和 pipeline 流程
+# 测试驱动和 CI 流程

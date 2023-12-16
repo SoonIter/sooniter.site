@@ -30,11 +30,10 @@ function change(index: number) {
       </div>
     </div>
     <Transition :name="`slide-fade-${animationPosition ? 'right' : 'left'}` " mode="out-in">
-      <AriticleList v-if="currIndex === 0" />
+      <ArticleList v-if="currIndex === 0" />
       <div v-else-if="currIndex === 1">
         still developing...
       </div>
-      <!-- <AriticleList v-else-if="currIndex === 1" /> -->
     </Transition>
   </div>
 </template>

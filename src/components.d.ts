@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     About: typeof import('./components/Icons/About.vue')['default']
     AriticleList: typeof import('./components/AriticleList.vue')['default']
     ArticleCard: typeof import('./components/ArticleCard.vue')['default']
+    ArticleList: typeof import('./components/ArticleList.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Back: typeof import('./components/Back.vue')['default']
     Bilibili: typeof import('./components/Icons/Bilibili.vue')['default']

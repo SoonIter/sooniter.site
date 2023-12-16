@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { StarportCarrier } from 'vue-starport'
 useHead({
   title: 'SoonIter的小站',
   meta: [

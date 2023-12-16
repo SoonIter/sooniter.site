@@ -156,7 +156,7 @@ const Leaf = memo(() => {
 
 ### 解决方法4 依赖追踪 Solidjs
 
-草，一句话就是拿到 state 和对应的 view 用虚拟 dom 也太漫长了，这个过程能不能短一点。
+拿到 state 和对应的 view ，在虚拟 dom + 运行时 diff 的方案显然过于漫长，如果能在编译时就拿到这部分信息就会快很多。
 
 Solidjs 在编译时将一个个小的 div 变成函数
 
@@ -173,8 +173,7 @@ div = () => {
 
 在 Signal 调用时，可以得知是具体在哪个函数中调用，是哪一个叶节点
 
-
-<div flex w-200px gap-4>
-  <img src="/imgs/ReactRerender/react-shame.png" flex-1 />
-  <img src="/imgs/ReactRerender/solid-yyds.png" flex-1 />
+<div flex gap-5>
+  <img src="/imgs/ReactRerender/react-shame.png" h-200px w-100px />
+  <img src="/imgs/ReactRerender/solid-yyds.png" h-200px w-100px />
 </div>

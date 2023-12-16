@@ -1,9 +1,6 @@
 <script setup lang="ts">
-// import { Starport } from 'vue-starport'
 </script>
 
 <template>
-  <Starport port="Avatar">
-    <img src="https://q1.qlogo.cn/g?b=qq&nk=1730214056&s=640" alt="avatar" rounded-full>
-  </Starport>
+  <img src="https://avatars.githubusercontent.com/u/79413249?s=400" alt="avatar" rounded-full>
 </template>

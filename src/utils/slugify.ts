@@ -1,5 +1,7 @@
 // string.js slugify drops non ascii chars so we have to
 // use a custom implementation here
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import { remove } from 'diacritics'
 // eslint-disable-next-line no-control-regex
 const rControl = /[\u0000-\u001F]/g

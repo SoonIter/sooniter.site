@@ -24,8 +24,6 @@ title: About Me
   }
 </style> -->
 
-<Avatar class="avatar h-30 w-30 absolute top-10 right-2 m-0 p-0 md:right-20vw" style="padding:0;margin:0;" />
-
 - 👋 Hi, I’m @SoonIter ,a college student in CUMT China
 - 🎨 I’m interested in frontend, Javascript
 - 🌱 frontend group leader in [cumtflyingstudio]("https://github.com/cumtflyingstudio"), an organization in my college.
