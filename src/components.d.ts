@@ -8,7 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     About: typeof import('./components/Icons/About.vue')['default']
-    AriticleList: typeof import('./components/AriticleList.vue')['default']
     ArticleCard: typeof import('./components/ArticleCard.vue')['default']
     ArticleList: typeof import('./components/ArticleList.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
