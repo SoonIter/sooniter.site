@@ -12,7 +12,3 @@ hero:
       text: About Me
       link: /zh/about
 ---
-
-import TerminalHome from '../components/Terminal/TerminalHome';
-
-<TerminalHome />

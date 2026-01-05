@@ -21,5 +21,9 @@
   "devDependencies": {
     "@rspress/core": "^2.0.0-rc.3",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.28"
   }
 }

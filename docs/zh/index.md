@@ -10,9 +10,7 @@ hero:
       link: /posts/third-party-cookie
     - theme: alt
       text: 关于我
-      link: /about
+      link: /zh/about
 ---
 
-import TerminalHome from '../components/Terminal/TerminalHome';
 
-<TerminalHome />

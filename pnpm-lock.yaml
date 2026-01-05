@@ -44,6 +44,13 @@ importers:
         version: 19.2.3(react@19.2.3)
 
   packages/rspress-plugin-theme-terminal-blog:
+    dependencies:
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      framer-motion:
+        specifier: ^12.23.28
+        version: 12.23.28(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     devDependencies:
       '@rspress/core':
         specifier: ^2.0.0-rc.3
