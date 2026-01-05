@@ -1,4 +1,4 @@
-import { SidebarGroup, SidebarItem } from '@rspress/core/runtime';
+import type { SidebarGroup, SidebarItem } from '@rspress/core';
 
 export type FileSystemNode = {
   type: 'file' | 'dir';
@@ -52,10 +52,10 @@ Link: ${item.link}
   root['README.md'] = {
     type: 'file',
     name: 'README.md',
-    content: '# Welcome to SoonIter Blog
+    content: `# Welcome to SoonIter Blog
 
 This is a terminal-based interface.
-Type `help` for commands.',
+Type \`help\` for commands.`,
     link: '/'
   };
 

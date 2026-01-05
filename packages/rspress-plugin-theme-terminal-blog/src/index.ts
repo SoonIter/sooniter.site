@@ -14,7 +14,7 @@ export function pluginThemeTerminalBlog(): RspressPlugin {
       };
     },
     globalUIComponents: [
-      path.join(__dirname, '../src/theme/Terminal/TerminalHome.tsx'),
+      path.join(__dirname, '../theme/Terminal/TerminalHome.tsx'),
     ],
   };
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './Terminal.module.css';
-import { useSidebarData, useRouter } from '@rspress/core/runtime';
+import { useSidebar, useRoutes, useNavigate } from '@rspress/core/runtime';
 import { buildFileSystemFromSidebar, resolvePath, FileSystemNode } from './utils';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -27,8 +27,8 @@ const WelcomeMessage = () => (
 );
 
 export default function Terminal({ onSwitchToGui }: TerminalProps) {
-  const sidebar = useSidebarData();
-  const router = useRouter();
+  const sidebar = useSidebar();
+  const navigate = useNavigate();
   
   // Build FS only once or when sidebar changes
   const fs = useMemo(() => buildFileSystemFromSidebar(sidebar), [sidebar]);
@@ -179,7 +179,7 @@ export default function Terminal({ onSwitchToGui }: TerminalProps) {
             // Or just navigate and let the layout handle it.
             // We should probably toggle GUI mode as well, otherwise user stays in terminal.
             onSwitchToGui();
-            router.push(node.link);
+            navigate(node.link);
           } else {
             outputEntry = { 
               id: Date.now() + '-out', 
