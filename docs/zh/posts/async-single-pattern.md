@@ -26,8 +26,8 @@ function getCurrentUser() {
   }
   return cachedName;
 }
-
 ```
+
 如果算法中做过记忆化搜索、动态规划等算法题目，就不难理解缓存，用空间来换时间。
 
 这个缓存变量的位置可以有很多种选择，例如，上面的代码是 "模块作用域形成的闭包"、还可以选择"手动造一个函数作用域的闭包"、"函数对象的属性（自记忆化函数）" 等，具体可以看我之前在掘金写的 [【前端】函数递归优化，javascript中应该如何写递归？](https://juejin.cn/post/7086409555277512711)
@@ -42,13 +42,13 @@ Java 写类，ts 也可以写类，先写一个教科书般的单例模式实现
 // 单例模式实现
 class Foo {
   public static getInstance() {
-    if(!this.instance) {
+    if (!this.instance) {
       this.instance = new Foo();
     }
     return this.instance;
   }
   private static instance: Foo; // 私有静态属性
-  private constructor() {}  // 私有方法，防止被调用
+  private constructor() {} // 私有方法，防止被调用
 }
 
 // new Foo(); // ❌ 类“Foo”的构造函数是私有的，仅可在类声明中访问。ts(2673)
@@ -56,6 +56,7 @@ const foo = Foo.getInstance();
 const bar = Foo.getInstance();
 console.log(foo === bar); // true
 ```
+
 单例模式具有以下特点
 
 1. 类只有一个实例
@@ -74,7 +75,7 @@ console.log(foo === bar); // true
 // context.ts
 export class Context {
   public static getInstance() {
-    if(!this.instance) {
+    if (!this.instance) {
       this.instance = new Context();
     }
     return this.instance;
@@ -88,6 +89,7 @@ export class Context {
   name: string;
 }
 ```
+
 ```typescript
 // sayHello.ts
 import { Context } from './context.ts';
@@ -100,6 +102,7 @@ function sayHello() {
 sayHello();
 sayHello();
 ```
+
 由于 "自带 cache"， constructor 只会被调用一次，getCurrentUser 只会被调用一次。
 
 由于 惰性初始化，使用时仅一次初始化，不使用就不会初始化。
@@ -130,7 +133,7 @@ instanceMap 具体使用哪种数据结构，可以由参数的个数、类型�
 ```typescript
 export class Context {
   public static getInstance(name: string) {
-    if(!this.instanceMap[name]) {
+    if (!this.instanceMap[name]) {
       this.instanceMap[name] = new Context(name);
     }
     return this.instance;
@@ -143,25 +146,25 @@ export class Context {
   name: string;
 }
 
-const a = Context.getInstance('a');  // -> Context {name: 'a'}
+const a = Context.getInstance('a'); // -> Context {name: 'a'}
 const aa = Context.getInstance('a'); // -> Context {name: 'a'}
-const b = Context.getInstance('b');  // -> Context {name: 'b'}
+const b = Context.getInstance('b'); // -> Context {name: 'b'}
 ```
 
 函数实现
 
 ```typescript
 interface Context {
-  name: string,
-  email: string
+  name: string;
+  email: string;
 }
 const cachedContextMap: Record<string, Context> = {};
 export function getContext(name: string) {
   if (!cachedContextMap[name]) {
     cachedContextMap[name] = {
       name,
-      email: getCurrentUserEmail(name)
-    }
+      email: getCurrentUserEmail(name),
+    };
   }
   return cachedContextMap[name];
 }
@@ -174,7 +177,7 @@ export function getContext(name: string) {
 ```typescript
 class Context {
   public static getInstance() {
-    if(!this.instance) {
+    if (!this.instance) {
       this.instance = new Context();
     }
     return this.instance;
@@ -193,7 +196,7 @@ class Context {
 // 正确实现
 class Context {
   public static getInstance(): Promise<Context> {
-    if(!this.instance) {
+    if (!this.instance) {
       this.instancePromise = this.create();
     }
     return this.instancePromise;
@@ -237,11 +240,10 @@ class Context {
 
 为了便于理解，我将其换成一个函数，并对比两种写法
 
-
 ```typescript
 // ✅正确写法
 let cachedContextPromise: Promise<Context> | null = null;
-function getContext(): Promise<Context>{
+function getContext(): Promise<Context> {
   if (!cachedContextPromise) {
     cachedContextPromise = create();
   }
@@ -252,7 +254,7 @@ function getContext(): Promise<Context>{
 ```typescript
 // ❌错误写法
 let cachedContext: Context | null = null;
-async function getContext(): Promise<Context>{
+async function getContext(): Promise<Context> {
   if (!cachedContext) {
     cachedContext = await create();
   }
@@ -265,6 +267,7 @@ async function getContext(): Promise<Context>{
 并发多个 Promise 产生的竞态问题，可以看我这个视频中的例子 [[js + vitest]写一个小异步任务队列](https://www.bilibili.com/video/BV1BT411J7w9/?spm_id_from=333.999.0.0)
 
 总之，你要缓存一个函数的运行结果，缓存返回值即可，返回 Context 就缓存 Context, 返回 `Promise<Context>` 就缓存 `Promise<Context>`
+
 > PS: 在面试中，恰巧遇到了这个面试题，于是偷着乐了
 
 ## 异步原子化 Atomic
@@ -286,16 +289,16 @@ await fs.chmod('hello.txt', 777);
 反映到异步中，就是将多个异步任务以某种策略聚合成一个异步任务
 
 ```typescript
-const cachedPromise: Promise<{name: string,email: string}> | null = null;
+const cachedPromise: Promise<{ name: string; email: string }> | null = null;
 function getInformation() {
   if (!cachedPromise) {
-    cachedPromise = (async function (){
+    cachedPromise = (async function () {
       const name = await getName();
       const email = await getEmailByName(name);
       return {
         name,
-        email
-      }
+        email,
+      };
     })();
   }
   return cachedPromise;
@@ -312,13 +315,13 @@ async function getInformation() {
   // const email = getEmailByName(name);
   return {
     name,
-    email
-  }
+    email,
+  };
 }
 
-const cachedPromise: Promise<{name: string,email: string}> | null = null;
+const cachedPromise: Promise<{ name: string; email: string }> | null = null;
 function getInformation_cached() {
-  if (!cachedPromise){
+  if (!cachedPromise) {
     cachedPromise = getInformation();
   }
   return cachedPromise;

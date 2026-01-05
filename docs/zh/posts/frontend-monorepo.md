@@ -37,7 +37,7 @@ image: frontend-monorepo/pnpm.png
 
 以该项目为 🌰
 
-* 目录结构
+- 目录结构
 
 ```txt
 ├── apps
@@ -56,7 +56,7 @@ image: frontend-monorepo/pnpm.png
 └── pnpm-workspace.yaml
 ```
 
-* 依赖关系
+- 依赖关系
 
 ```txt
   web1 -> component -> util
@@ -76,7 +76,6 @@ util:build --> component:build --> web1:build --> (web1:test,e2e...)
 ```txt
 util:build(cached) -> component:build(cached) -> web2:build
 ```
-
 
 ## 产物引入 和 源码引入
 
@@ -113,7 +112,7 @@ build 拖着这条又臭又长的链路还算勉强可以接受, start 也要深
 
 引入源码, 实际上是有点 magic 的, 修改 bundler 的 resolve 逻辑, 让 resolve 打到源码即可
 
-* 开启方式 1 用 mainFields 开启
+- 开启方式 1 用 mainFields 开启
 
 ```js
 module.exports = {
@@ -121,8 +120,9 @@ module.exports = {
   resolve: {
     mainFields: ['my-dev', 'jsnext:main', 'module', 'main'],
   },
-}
+};
 ```
+
 ```json
 {
   "name": "util",
@@ -132,17 +132,17 @@ module.exports = {
   // ...
 }
 ```
+
 exports 字段同上, 可见 [Vite 文档 resolve-conditions](https://vitejs.dev/config/shared-options.html#resolve-conditions)
 
-
-* 开启方式 2 用 resolve.alias 调
+- 开启方式 2 用 resolve.alias 调
 
 ```js
 module.exports = {
   alias: {
-    '@xxxx/util': path.resolve(__dirname, '../../packages/util/src/index.ts')
+    '@xxxx/util': path.resolve(__dirname, '../../packages/util/src/index.ts'),
   },
-}
+};
 ```
 
 > 注意框架可能由于性能, loader 默认忽略 node_modules, 比如 nextjs 需开启
@@ -155,7 +155,7 @@ module.exports = {
 module.exports = {
   transpilePackages: ['@xxx/util', '包名'],
   // ...
-}
+};
 ```
 
 之后开发只开启一个 start 即可, 缺点也很明显
@@ -291,7 +291,7 @@ b包用户下载到 b 根据 semver `">=18.1.0"` 下到了最新 latest 的 `rea
 
 ### 幻影依赖
 
-由于 npm 将所有依赖 hoist 到 node_modules,  node 逐级向上查找 node_modules 时可以找到未声明到 `package.json` 中的依赖, 造成开发可用但发包后报 `Cannot found module "xxx"`
+由于 npm 将所有依赖 hoist 到 node_modules, node 逐级向上查找 node_modules 时可以找到未声明到 `package.json` 中的依赖, 造成开发可用但发包后报 `Cannot found module "xxx"`
 
 解决方法是用 包管理器给的后门,比如 pnpm 的 `overrides` `packageExtensions` `hook.readPackage`, 修复三方包漏写的,写错的 `package.json`
 
@@ -368,10 +368,10 @@ node 下的包管理，允许一个包存在多个版本，比如 `debug@5.0.0` 
 module.exports = {
   resolve: {
     alias: {
-      react: path.join(__dirname, 'node_modules/react')
-    }
-  }
-}
+      react: path.join(__dirname, 'node_modules/react'),
+    },
+  },
+};
 ```
 
 这个 hack 由于用的太多，vite 甚至直接支持了一个 `dedupe` 字段 ![Vite 官方文档 —— resolve-dedupe](https://vitejs.dev/config/shared-options.html#resolve-dedupe)
@@ -414,13 +414,11 @@ antfu 的 bumpp 则直接全仓库 `bump patch/minor/major` 来更新版本号
 
 给 monorepo 找回一些尊严，那就是 -->
 
-
 总结，monorepo 会让开发者爽，但也只能爽一半，还会让用户不爽。
 
 由于以上问题, 我们重新思考, 以 "包" 为单位复用代码的 monorepo , 带来的这个复杂度是否值得
 
 pnpm 作者所在的公司开发了 [Bit](https://bit.dev/) , 已经不以 "包" 为单位分发代码, 而是以 "组件" 为单位, 组织方式也是一个一个的源码文件夹,不过增加了文件结构的约束, 无需写繁重的 package.json ，具体是否好用还要由时间去检验
-
 
 ## 参考
 

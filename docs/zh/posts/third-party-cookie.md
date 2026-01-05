@@ -31,7 +31,6 @@ https://a.xxx.com 和 https://b.xxx.com 相同的二级域名，是同站
 
 ![cross-site](/imgs/third-party-cookie/cross-site.png)
 
-
 ## SameSite
 
 Chrome 51 起，Cookie 新增 SameSite 属性，用来防止 CSRF 攻击 (安全) 和用户追踪 (隐私)。
@@ -45,7 +44,6 @@ Chrome 80 起，默认会给第三方 Cookie 添加 SameSite=Lax 属性，A 域�
 
 Chrome 118 开始有第三方 Cookie 的警告，2024 年 Q1-Q3 逐步禁用 `SameSite=None; Secure`，请求时无法读取并携带 `SameSite=None;Secure` 的 Cookie，响应 `Set-Cookie: xxx=xx;SameSite=None;Secure` 时也无法写入
 
-
 ## 影响范围？
 
 测试设置位于 [chrome://flags/#test-third-party-cookie-phaseout](chrome://flags/#test-third-party-cookie-phaseout)
@@ -55,7 +53,6 @@ Chrome 118 开始有第三方 Cookie 的警告，2024 年 Q1-Q3 逐步禁用 `Sa
 - 广告业务：通过三方 Cookie 存储用户标识，用于进行广告归因或兴趣推荐；
 - CSRF ：通过 Cookie 存储 CSRF Token 信息，跨站请求则为三方 Cookie；
 - iframe：通用的聊天、地图等 iframe，通过三方 Cookie 来共享一些状态；
-
 
 ## 解决方案？
 
@@ -86,7 +83,6 @@ Chrome 118 开始有第三方 Cookie 的警告，2024 年 Q1-Q3 逐步禁用 `Sa
 通过设置 Partitioned，就可以将站点选择将 Cookie 存储在由顶级站点分区的单独 Cookie jar 中。比如我们在站点 A 中通过 iframe 嵌入了一个站点 C，正常情况下如果三方 Cookie 被禁用后，C 是无法在 A 站点访问到它的 Cookie 的。如果 C 在它的 Cookie 上指定了 Partitioned 属性，这个 Cookie 将保存在一个特殊的分区 jar 中。
 它只会在站点 A 中通过 iframe 嵌入站点 C 时才会生效，浏览器会判定只会在顶级站点为 A 时才发送该 Cookie。当用户访问一个新站点时，例如站点 B，如果也它通过 iframe 嵌入了站点 C，这时在站点 B 下的站点 C 是无法访问到之前在 A 下面设置的那个 Cookie 的。如果用户直接访问站点 C ，一样也是访问不到这个 Cookie 的。
 
-
 #### 4. Related Website Sets
 
 解决同一个公司或组织下不同域名的数据共享能力。
@@ -102,13 +98,18 @@ Chrome 118 开始有第三方 Cookie 的警告，2024 年 Q1-Q3 逐步禁用 `Sa
 使用方式大概是这样的：我们首先需要提供一个用于存储归因报告数据的接口，然后在 HTML a、img 、iframe 等标签上追加 attributionsrc：
 
 ```html
-<a href="https://shoes.example/landing"
+<a
+  href="https://shoes.example/landing"
   attributionsrc="http://adtech.example/register-source?..."
-  target="_blank">
-Click me</a>
+  target="_blank"
+>
+  Click me</a
+>
 
-<img href="https://advertiser.example/landing"
-  attributionsrc="https://adtech.example/register-source?..."/>
+<img
+  href="https://advertiser.example/landing"
+  attributionsrc="https://adtech.example/register-source?..."
+/>
 ```
 
 或者通过 JavaScript 调用注入 attribution src：
@@ -128,7 +129,7 @@ window.open(
 通过 Topics API ，浏览器可以根据用户的浏览活动观察并记录用户感兴趣的主题。这些信息只会记录在用户的设备上。然后，Topics API 可以让 API 调用者（例如广告技术平台）访问用户感兴趣的主题，但不会透露有关用户浏览活动的其他信息。
 
 ```javascript
-const topics = await document.browsingTopics()
+const topics = await document.browsingTopics();
 ```
 
 #### 7. Shared Storage API
@@ -147,18 +148,17 @@ FedCM（联合凭证管理）是联合身份服务（例如“使用...登录”
 
 1. `SameSite: Lax` 下请求
 
-| 请求类型  | 示例                                | 正常情况    | Lax         |
-| --------- | --------------------------------- | ----------- | ----------- |
+| 请求类型  | 示例                                 | 正常情况    | Lax         |
+| --------- | ------------------------------------ | ----------- | ----------- |
 | 链接      | `<a href="..."></a>`                 | 发送 Cookie | 发送 Cookie |
 | 预加载    | `<link rel="prerender" href="..."/>` | 发送 Cookie | 发送 Cookie |
 | GET 表单  | `<form method="GET" action="..."> `  | 发送 Cookie | 发送 Cookie |
 | POST 表单 | `<form method="POST" action="...">`  | 发送 Cookie | 不发送      |
 | iframe    | `<iframe src="..."></iframe> `       | 发送 Cookie | 不发送      |
-| AJAX      | `$.get("...")   `                 | 发送 Cookie | 不发送      |
+| AJAX      | `$.get("...")   `                    | 发送 Cookie | 不发送      |
 | Image     | `<img src="..."> `                   | 发送 Cookie | 不发送      |
 
 Lax 主要解决 Strict 的易用性问题，用户从第三方页面访问一个已登录的系统时，由于未携带Cookie，总是需要重新登录。但由于现在基本上所有网站都是 SPA + ajax 请求，a 链接跳转携带的 Cookie 一般可以忽视
-
 
 ## 引用
 

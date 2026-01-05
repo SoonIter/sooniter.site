@@ -22,11 +22,9 @@ export default defineConfig({
   markdown: {
     link: {
       checkDeadLinks: {
-        excludes: [
-          'chrome://flags/#test-third-party-cookie-phaseout'
-        ]
-      }
-    }
+        excludes: ['chrome://flags/#test-third-party-cookie-phaseout'],
+      },
+    },
   },
   themeConfig: {
     socialLinks: [
