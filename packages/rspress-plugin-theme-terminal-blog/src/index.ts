@@ -13,5 +13,8 @@ export function pluginThemeTerminalBlog(): RspressPlugin {
         themeDir: path.join(__dirname, 'theme'),
       };
     },
+    globalUIComponents: [
+      path.join(__dirname, '../theme/Terminal/TerminalHome.tsx'),
+    ],
   };
 }
