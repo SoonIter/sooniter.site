@@ -6,3 +6,6 @@ node_modules/
 # Rspress
 doc_build/
 .rspress/
+
+# Build output
+dist/

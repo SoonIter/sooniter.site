@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "build": "rspress build",
+    "build:website": "pnpm --filter @sooniter/rspress-plugin-theme-terminal-blog build && rspress build",
     "dev": "rspress dev",
     "format": "prettier --write .",
     "lint": "prettier --check .",
     "preview": "rspress preview"
   },
   "dependencies": {
-    "@rspress/core": "^2.0.0-rc.3"
+    "@rspress/core": "^2.0.0-rc.3",
+    "@sooniter/rspress-plugin-theme-terminal-blog": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.8.1",

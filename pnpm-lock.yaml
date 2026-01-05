@@ -10,6 +10,9 @@ importers:
       '@rspress/core':
         specifier: ^2.0.0-rc.3
         version: 2.0.0-rc.4(@types/react@19.2.7)
+      '@sooniter/rspress-plugin-theme-terminal-blog':
+        specifier: workspace:*
+        version: link:packages/rspress-plugin-theme-terminal-blog
     devDependencies:
       '@types/node':
         specifier: ^22.8.1
@@ -32,6 +35,15 @@ importers:
       react-dom:
         specifier: ^19.2.3
         version: 19.2.3(react@19.2.3)
+
+  packages/rspress-plugin-theme-terminal-blog:
+    devDependencies:
+      '@rspress/core':
+        specifier: ^2.0.0-rc.3
+        version: 2.0.0-rc.4(@types/react@19.2.7)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
 
 packages:
   '@emnapi/core@1.8.1':
@@ -1861,6 +1873,11 @@ packages:
         integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==,
       }
 
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   undici-types@6.21.0:
     resolution:
       {
@@ -3413,6 +3430,8 @@ snapshots:
   trough@2.2.0: {}
 
   tslib@2.8.1: {}
+
+  typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
 

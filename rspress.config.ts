@@ -1,8 +1,10 @@
 import * as path from 'node:path';
 import { defineConfig } from '@rspress/core';
+import { pluginThemeTerminalBlog } from '@sooniter/rspress-plugin-theme-terminal-blog';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
+  plugins: [pluginThemeTerminalBlog()],
   title: 'SoonIter',
   description: 'SoonIter 的个人博客',
   lang: 'zh',

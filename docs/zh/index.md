@@ -7,8 +7,8 @@ hero:
   actions:
     - theme: brand
       text: 博客文章
-      link: /zh/posts/third-party-cookie
+      link: /posts/third-party-cookie
     - theme: alt
       text: 关于我
-      link: /zh/about
+      link: /about
 ---
