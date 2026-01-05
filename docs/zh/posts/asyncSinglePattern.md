@@ -6,7 +6,6 @@ lang: zh
 duration: 20min
 image: typescript.webp
 ---
-[[TOC]]
 
 ## 函数缓存，记忆化函数 或者 动态规划？
 

@@ -6,7 +6,6 @@ lang: zh
 duration: 30min
 image: /imgs/third-party-cookie/tld+1.png
 ---
-[[TOC]]
 
 ## 跨域(cross-origin) 和 跨站(cross-site)
 

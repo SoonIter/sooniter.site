@@ -7,7 +7,6 @@ duration: 10min
 image: https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b89d9b11f664eff833f9722b3f8d715~tplv-k3u1fbpfcp-zoom-1.image
 ---
 
-[[TOC]]
 
 ## 前言
 

@@ -6,7 +6,6 @@ lang: zh
 duration: 5min
 image: https://pic2.zhimg.com/80/v2-e5e2c04a518f9b14375913c7fabc961c_720w.jpg
 ---
-[[TOC]]
 
 本篇来源于我在知乎的一篇回答，以下为原链接
 

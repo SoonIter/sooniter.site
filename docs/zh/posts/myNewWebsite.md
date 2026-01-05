@@ -7,7 +7,6 @@ duration: 15min
 image: site.png
 ---
 
-[[TOC]]
 <img src="/imgs/site.png"/>
 
 我的新的个人博客，选择使用[*Vitesse*](https://github.com/antfu/vitesse)搭建，借鉴了[antfu的个人主页](https://antfu.me/)，这个由antfu编写的模版让我用的很爽
