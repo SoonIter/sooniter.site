@@ -5,6 +5,8 @@
   "scripts": {
     "build": "rspress build",
     "dev": "rspress dev",
+    "format": "prettier --write .",
+    "lint": "prettier --check .",
     "preview": "rspress preview"
   },
   "dependencies": {
@@ -14,6 +16,8 @@
     "@types/node": "^22.8.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "prettier": "^3.5.2",
+    "prettier-plugin-packagejson": "^2.5.8",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
