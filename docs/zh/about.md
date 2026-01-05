@@ -2,117 +2,42 @@
 title: About Me
 ---
 
-<!-- <style>
-  .list{
-    @apply flex justify-start items-center m-4 gap-4;
-  }
-  .list section{
-    display: inline;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  section img{
-    display: inline-block !important;
-    width:20px !important;
-    height:20px !important;
-    padding:0 !important;
-    margin:0 !important;
-  }
-  .avatar img{
-    padding:0 !important;
-    margin:0 !important;
-  }
-</style> -->
+- Hi, I'm @SoonIter, a frontend developer
+- I'm interested in frontend, JavaScript, and Rust
+- Core developer of [Rspack](https://github.com/web-infra-dev/rspack) ecosystem
+- Like code, also like to change the world.
 
-- 👋 Hi, I’m @SoonIter ,a college student in CUMT China
-- 🎨 I’m interested in frontend, Javascript
-- 🌱 frontend group leader in [cumtflyingstudio]("https://github.com/cumtflyingstudio"), an organization in my college.
-- ✨ like code, also like to change the world.
+## Links
 
+- [GitHub](https://github.com/SoonIter)
+- [Twitter](https://twitter.com/user_SoonIter)
 
-<IconButtons onlyShowLink md:ml-20/>
+## Languages
 
-#### Languages
+JavaScript, TypeScript, CSS, HTML, Rust
 
-<div class="list">
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png" alt="javascript" /></section>
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png" alt="typescript" /></section>
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png" alt="css" /></section>
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" alt="html" /></section>
-<section><img src="https://avatars.githubusercontent.com/u/5430905?s=200&v=4" alt="rust" /></section>
-</div>
+## Frameworks
 
+React, Svelte, Vue, Solid
 
-#### Frameworks
+## Tools
 
-<div class="list">
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png" alt="react" /></section>
-<section><img src="https://avatars.githubusercontent.com/u/23617963?s=200&v=4" alt="svelte" /></section>
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png" alt="vue" /></section>
-<section><img src="https://avatars.githubusercontent.com/u/95326956?s=200&v=4" alt="solid" /></section>
-</div>
+macOS, Git, VS Code, Vim
 
-#### Tools
+## My Projects
 
-<div class="list">
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/macos/macos.png" alt="macos" /></section>
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" alt="git" /></section>
-<section><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" alt="visual-studio-code" /></section>
-<section><img src="https://raw.githubusercontent.com/VSCodeVim/Vim/master/images/icon.png" alt="vscodevim" /></section>
-</div>
+### Rstack Ecosystem
 
+- [Rspack](https://github.com/web-infra-dev/rspack) - High-performance JavaScript bundler
+- [Rsbuild](https://github.com/web-infra-dev/rsbuild) - Build tool based on Rspack
+- [Rspress](https://github.com/web-infra-dev/rspress) - Static site generator
+- [Rslib](https://github.com/web-infra-dev/rslib) - Library build tool
 
-#### My Owesome Projects
+### Personal Projects
 
-<details>
-<summary>For my own</summary>
-
-<Project title="SoonIter/pinia-dux" link="https://github.com/SoonIter/pinia-dux" />
-
-<Project title="SoonIter/semi-design-solid" link="https://github.com/SoonIter/semi-design-solid" />
-
-<Project title="SoonIter/soon-cli" link="https://github.com/SoonIter/soon-cli" />
-
-<Project title="SoonIter/type-challenges-sooniter-answers" link="https://github.com/SoonIter/type-challenges-sooniter-answers" />
-
-</details>
-
-<details>
-<summary>Solid-js</summary>
-
-<Project title="SoonIter/semi-design-solid" link="https://github.com/SoonIter/semi-design-solid" />
-
-<Project title="SoonIter/solid-hookstore" link="https://github.com/SoonIter/solid-hookstore" />
-
-<Project title="SoonIter/unplugin-svg2solid" link="https://github.com/SoonIter/unplugin-svg2solid" />
-</details>
-
-<details>
-
-<summary>Tampermonkey-script</summary>
-<Project title="cumtflyingstudio/tampermonkey-emoji-commit-github" link="https://github.com/cumtflyingstudio/tampermonkey-emoji-commit-github" />
-
-<Project title="SoonIter/tampermonkey-removePrefix-bilibili" link="https://github.com/SoonIter/tampermonkey-removePrefix-bilibili" />
-
-</details>
-
-
-<details>
-<summary>For My Team</summary>
-
-<Project title="cumtflyingstudio/tampermonkey-emoji-commit-github" link="https://github.com/cumtflyingstudio/tampermonkey-emoji-commit-github" />
-
-<Project title="cumtflyingstudio/qiangcaima" link="https://github.com/cumtflyingstudio/qiangcaima" />
-
-<Project title="cumtflyingstudio/slidev-theme-flyingstudio" link="https://github.com/cumtflyingstudio/slidev-theme-flyingstudio" />
-
-<Project title="cumtflyingstudio/github-learn-board" link="https://github.com/cumtflyingstudio/github-learn-board" />
-
-<Project title="cumtflyingstudio/usePagination" link="https://github.com/cumtflyingstudio/usePagination" />
-
-<Project title="SoonIter/flying-email-html-generate" link="https://github.com/SoonIter/flying-email-html-generate" />
-
-</details>
+- [pinia-dux](https://github.com/SoonIter/pinia-dux)
+- [semi-design-solid](https://github.com/SoonIter/semi-design-solid)
+- [soon-cli](https://github.com/SoonIter/soon-cli)
 
 ## My Mobile Projects in Production
 
@@ -121,4 +46,3 @@ title: About Me
 ![](/imgs/microLife.png)
 
 ![](/imgs/timetable.jpg)
-

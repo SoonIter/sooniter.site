@@ -1,10 +1,8 @@
 .DS_Store
-.vite-ssg-dist
-.vite-ssg-temp
-.vite-inspect
+node_modules/
 *.local
-dist
-dist-ssr
-node_modules
-.idea/
 *.log
+
+# Rspress
+doc_build/
+.rspress/
