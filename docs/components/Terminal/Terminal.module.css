@@ -1,0 +1,177 @@
+.terminalContainer {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background-color: rgba(30, 30, 30, 0.95); /* Semi-transparent */
+  backdrop-filter: blur(8px); /* Blur effect */
+  color: #d4d4d4;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed; /* Fixed to cover everything */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.5); /* Vignette effect */
+}
+
+.terminalHeader {
+  background-color: rgba(45, 45, 45, 0.9);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.trafficLights {
+  display: flex;
+  gap: 8px;
+}
+
+.trafficLight {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.trafficLight:hover { transform: scale(1.1); }
+
+.close { background-color: #ff5f56; cursor: pointer; }
+.minimize { background-color: #ffbd2e; }
+.maximize { background-color: #27c93f; }
+
+.terminalTitle {
+  color: #aaa;
+  font-size: 0.9em;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.exitButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ccc;
+  font-family: inherit;
+  font-size: 0.75em;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.exitButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.terminalBody {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  cursor: text;
+  font-size: 1.05em; /* Slightly larger text */
+}
+
+/* Scrollbar styling */
+.terminalBody::-webkit-scrollbar {
+  width: 10px;
+}
+.terminalBody::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+.terminalBody::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 5px;
+}
+.terminalBody::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.outputLine {
+  margin-bottom: 4px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.commandLine {
+  display: flex;
+  align-items: flex-start; /* Align for multiline input */
+  margin-top: 4px;
+}
+
+.prompt {
+  color: #0f0; /* Green prompt */
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.directory {
+  color: #569cd6; /* Blue dir */
+}
+
+.inputArea {
+  flex: 1;
+  position: relative;
+}
+
+/* The visible input span */
+.inputDisplay {
+  min-height: 1.5em;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* The actual hidden input for handling typing */
+.hiddenInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: text;
+  border: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent; /* Hide default caret */
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.2em;
+  background-color: #d4d4d4;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+  margin-left: -0.6em; /* Pull back to overlay last char if needed, or just append */
+}
+
+.cursor.typing {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Utility Colors for ls output */
+.file-dir { color: #569cd6; font-weight: bold; }
+.file-md { color: #ce9178; } /* Markdown file color */
+.file-exec { color: #27c93f; }

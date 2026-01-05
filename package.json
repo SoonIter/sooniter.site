@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@rspress/core": "^2.0.0-rc.3",
-    "@sooniter/rspress-plugin-theme-terminal-blog": "workspace:*"
+    "@sooniter/rspress-plugin-theme-terminal-blog": "workspace:*",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.28"
   },
   "devDependencies": {
     "@types/node": "^22.8.1",

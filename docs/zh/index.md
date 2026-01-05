@@ -12,3 +12,7 @@ hero:
       text: 关于我
       link: /about
 ---
+
+import TerminalHome from '../components/Terminal/TerminalHome';
+
+<TerminalHome />
