@@ -18,6 +18,16 @@ export default defineConfig({
       title: 'SoonIter',
     },
   ],
+  llms: true,
+  markdown: {
+    link: {
+      checkDeadLinks: {
+        excludes: [
+          'chrome://flags/#test-third-party-cookie-phaseout'
+        ]
+      }
+    }
+  },
   themeConfig: {
     socialLinks: [
       {
