@@ -1,0 +1,25 @@
+{
+  "name": "@sooniter/rspress-plugin-theme-terminal-blog",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "@rspress/core": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rspress/core": "^2.0.0-rc.3",
+    "typescript": "^5.7.3"
+  }
+}
